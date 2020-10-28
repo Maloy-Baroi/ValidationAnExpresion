@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Validation Expression</title>
+</head>
+<body>
+
+<div>
+    <ul id="ul">
+        <li><button onclick="display_0()">Home</button></li>
+        <li><button onclick="display_1()">Username</button></li>
+        <li><button onclick="display_2()">Email</button></li>
+        <li><button onclick="display_3()">Postal Code</button></li>
+        <li><button onclick="display_4()">Phone Number</button></li>
+    </ul>
+</div>
+
+<div class="content" id="user" style="display: none;">
+    <form onsubmit="return username_validation();" class="form_class">
+        <label for="username"></label>
+        <input type="text" placeholder="Write your username: " id="username">
+        <button type="submit" class="submit_button">Submit</button>
+        <text id="test_result_username"></text>
+    </form>
+</div>
+<div class="content" id="emailadd" style="display: none;">
+    <form onsubmit="return email_validation();" class="form_class">
+        <label for="email"></label>
+        <input type="email" placeholder="Write your email:" id="email">
+        <button type="submit" class="submit_button">Submit</button>
+        <text id="test_result_email"></text>
+    </form>
+</div>
+
+<div class="content" id="postal" style="display: none;">
+    <form onsubmit="return postalCode_validation()" class="form_class">
+        <label for="postal_code"></label>
+        <input type="number" placeholder="Example: 1207" id="postal_code">
+        <button type="submit" class="submit_button">Submit</button>
+        <text id="test_result_postal"></text>
+    </form>
+</div>
+
+<div class="content" id="phone" style="display: none;">
+    <form onsubmit="return phoneNumber_validation()" class="form_class">
+        <label for="phoneNumber"></label>
+        <input type="number" placeholder="Phone: +880" id="phoneNumber">
+        <button type="submit" class="submit_button">Submit</button>
+        <text id="test_result_phone"></text>
+    </form>
+</div>
+
+
+<!-- JavaScript -->
+<script>
+    function display_0(){
+        document.getElementById("user").style.display = "none";
+        document.getElementById("emailadd").style.display = "none";
+        document.getElementById("postal").style.display = "none";
+        document.getElementById("phone").style.display = "none";
+        document.getElementById("form_class").reset();
+    }
+    function display_1(){
+        document.getElementById("user").style.display = "block";
+        document.getElementById("emailadd").style.display = "none";
+        document.getElementById("postal").style.display = "none";
+        document.getElementById("phone").style.display = "none";
+        (document.getElementById("test_result_username")).innerHTML = "";
+    }
+    function display_2(){
+        document.getElementById("user").style.display = "none";
+        document.getElementById("emailadd").style.display = "block";
+        document.getElementById("postal").style.display = "none";
+        document.getElementById("phone").style.display = "none";
+        (document.getElementById("test_result_email")).innerHTML = "";
+    }
+    function display_3(){
+        document.getElementById("user").style.display = "none";
+        document.getElementById("emailadd").style.display = "none";
+        document.getElementById("postal").style.display = "block";
+        document.getElementById("phone").style.display = "none";
+        (document.getElementById("test_result_postal")).innerHTML = "";
+    }
+    function display_4(){
+        document.getElementById("user").style.display = "none";
+        document.getElementById("emailadd").style.display = "none";
+        document.getElementById("postal").style.display = "none";
+        document.getElementById("phone").style.display = "block";
+        (document.getElementById("test_result_phone")).innerHTML = "";
+    }
+
+    function username_validation(){
+        let username_id = document.getElementById('username').value;
+        let text = document.getElementById("test_result_username");
+        let pattern = /^[A-Za-z0-9_]{3,16}$/;
+        if(username_id.match(pattern)){
+            (document.getElementsByClassName("form_class")[0]).reset();
+            text.innerHTML = "Valid";
+        }
+        else{
+            text.innerHTML  = "Invalid";
+
+        }
+        return false;
+    }
+
+    function email_validation() {
+        let email_id = document.getElementById('email').value;
+        let text = document.getElementById("test_result_email");
+        let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,10}$/;
+        if(email_id.match(pattern)){
+            text.innerHTML = "Valid";
+            (document.getElementsByClassName("form_class")[1]).reset();
+        }
+        else{
+            text.innerHTML = "Invalid";
+        }
+        return false;
+    }
+
+    function postalCode_validation() {
+        let postalcode_id = document.getElementById('postal_code').value;
+        let text = document.getElementById("test_result_postal");
+        let pattern = /^[1-9][0-9]{3}$/;
+        if(postalcode_id.match(pattern)){
+            (document.getElementsByClassName("form_class")[2]).reset();
+            text.innerHTML = "Valid";
+        }
+        else{
+            text.innerHTML = "Invalid";
+        }
+        return false;
+    }
+
+    function phoneNumber_validation() {
+        let phoneNumber_id = document.getElementById('phoneNumber').value;
+        let text = document.getElementById('test_result_phone');
+        let pattern = /\+?(88)?0?1[3456789][0-9]{8}\b/;
+        if(phoneNumber_id.match(pattern)){
+            (document.getElementsByClassName("form_class")[3]).reset();
+            text.innerHTML = "Valid";
+        }
+        else{
+            text.innerHTML = "Invalid";
+        }
+        return false;
+    }
+</script>
+</body>
+</html>
