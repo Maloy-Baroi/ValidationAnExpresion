@@ -138,7 +138,7 @@
     function phoneNumber_validation() {
         let phoneNumber_id = document.getElementById('phoneNumber').value;
         let text = document.getElementById('test_result_phone');
-        let pattern = /\+?(88)?0?1[3456789][0-9]{8}\b/;
+        let pattern = /\+?(88)01[3-9][0-9]{8}\b/;
         if(phoneNumber_id.match(pattern)){
             (document.getElementsByClassName("form_class")[3]).reset();
             text.innerHTML = "Valid";
